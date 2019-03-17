@@ -75,9 +75,9 @@ int main(int argc, char **argv) {
 		msg1.twist.linear.y =objs.vel[1];
 		msg1.twist.linear.z =objs.vel[2];
 
-		std::cout<<"current_POS"<<"    "<<objs.pos[0]<<"    "<<objs.pos[1]<<"    "<<objs.pos[2]<<std::endl;
+		std::cout<<segment<<"    "<<objs.pos[0]<<"    "<<objs.pos[1]<<"    "<<objs.pos[2]<<std::endl;
 		
-		//std::cout<<objs.pos[0]<<"-"<<objs.pos[1]<<std::endl;
+		std::cout<<objs.pos[0]<<"-"<<objs.pos[1]<<std::endl;
 		//ROS_INFO("position:%f-%f-%f; velocity: %f-%f-%f", msg.position.x,msg.position.y,msg.position.z,msg.velocity.x,msg.velocity.y,msg.velocity.z);
 		
 		

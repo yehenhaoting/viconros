@@ -7,9 +7,10 @@ using namespace ViconDataStreamSDK::CPP;
 class ObjStatus
 {
 public:
-	real_T pos[3];
-	real_T vel[3];
-	real_T tm;
+	double pos[3];
+	double vel[3];
+    double ort[4];
+	double tm;
     bool res;
     ObjStatus();
     ObjStatus & operator =(ObjStatus s);
@@ -21,16 +22,14 @@ class CFetchViconData
         Client client;
         ObjStatus lastStatus;
         
-        char buf[10][20],model[10][10],segment[10][10];
+        char buf[10][20];
         double segOrg[3];
-        void getModelName();
-        void getSegName(const char * line,char * model,char * segment);
         
     public:
         char host[50];
         int segCount;
         bool Connect(const char * Hostname);
-        struct ObjStatus GetStatus(int i);
+        struct ObjStatus GetStatus(const char *, const char *);
         bool Disconnect();
         bool IsConnected;
         char * GetModelName(int i);

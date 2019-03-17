@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "unistd.h"
 #include <string>
+#include <iostream>
 using namespace ViconDataStreamSDK::CPP;
 class ObjStatus
 {
@@ -10,6 +11,7 @@ public:
 	double pos[3];
 	double vel[3];
     double ort[4];
+    double euler[3];
 	double tm;
     bool res;
     ObjStatus();
@@ -29,7 +31,9 @@ class CFetchViconData
         char host[50];
         int segCount;
         bool Connect(const char * Hostname);
-        struct ObjStatus GetStatus(const char *, const char *);
+        // struct ObjStatus GetStatus(const char *, const char *);
+        void GetStatus(ObjStatus &s, const char * model,const char * segment);
+
         bool Disconnect();
         bool IsConnected;
         char * GetModelName(int i);

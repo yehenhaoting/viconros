@@ -9,7 +9,6 @@ ObjStatus::ObjStatus()
                 pos[i]=0;
                 vel[i]=0;
                 ort[i]=0;
-                euler[i]=0;
             }
             ort[4]=0;
             tm=0;
@@ -36,7 +35,6 @@ ObjStatus & ObjStatus::operator =(ObjStatus s)
     {
         pos[i]=s.pos[i];
         vel[i]=s.vel[i];
-        euler[i]=s.euler[i];
         tm=s.tm;
         res=s.res;
     }
@@ -73,10 +71,10 @@ bool CFetchViconData::Disconnect()
 	return true;
 }
 
-void CFetchViconData::GetStatus(ObjStatus &s, const char * model, const char * segment)
+ObjStatus CFetchViconData::GetStatus(const char * model,const char * segment)
 {
     
-	// ObjStatus s;
+	ObjStatus s;
     Output_GetFrameNumber output;
 
     unsigned int fn;
@@ -85,8 +83,7 @@ void CFetchViconData::GetStatus(ObjStatus &s, const char * model, const char * s
     if(outputframe.Result!=Result::Success)
     {
         s.res=false;
-        // return s;
-        return;
+        return s;
     }
     
     Output_GetSegmentGlobalTranslation _Output_GetSegmentGlobalTranslation = 
@@ -97,14 +94,12 @@ void CFetchViconData::GetStatus(ObjStatus &s, const char * model, const char * s
     if(_Output_GetSegmentGlobalTranslation.Result!=Result::Success)
     {
         s.res=false;
-        // return s;
-        return;
+        return s;
     }
     if(_Output_GetSegmentGlobalTranslation.Occluded)
     {
         s.res=false;
-        // return s;
-        return;
+        return s;
     }
     s.res=true;
    /* printf("Get a frame...");*/
@@ -143,35 +138,18 @@ void CFetchViconData::GetStatus(ObjStatus &s, const char * model, const char * s
     if(Output_quat.Result!=Result::Success)
     {
         s.res=false;
-        // std::cout << "Output_quat False" << std::endl;
-        // return s;
-        return;
+        return s;
     }
     for(int i=0;i<4;i++)
     {
-        s.ort[i]=Output_quat.Rotation[i];
-        // std::cout << "quat" << i << "=" <<s.ort[i] << std::endl;
-    }
 
-    Output_GetSegmentGlobalRotationEulerXYZ Output_euler = client.GetSegmentGlobalRotationEulerXYZ(model, segment);
-    if(Output_euler.Result!=Result::Success)
-    {
-        s.res=false;
-        std::cout << "euler False" << std::endl;
-        // return s;
-        return;
-    }
-    for(int i=0;i<3;i++)
-    {
-        s.euler[i]=Output_euler.Rotation[i];
-        std::cout << "euler" << i << "=" <<s.euler[i] *60 << std::endl;
+        s.ort[i]=Output_quat.Rotation[i];
     }
 
 
     lastStatus=s;
    /* printf("Return the value...");*/
-    
-	// return s;
+	return s;
 }
 
 
