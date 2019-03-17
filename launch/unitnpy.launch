@@ -1,0 +1,23 @@
+<launch>
+	<group ns="quadrotor">
+		<node name="viconros" pkg="viconros" type="viconros" output="screen">
+			<param name="host" value="192.168.2.100:801"/>
+			<param name="model" value="QUAD150"/>
+			<param name="segment" value="QUAD4OFFB"/>
+		</node>
+	</group>
+	<group ns="sus_ball">
+		<node name="ball" pkg="viconros" type="viconros" output="screen">
+			<param name="host" value="192.168.2.100:801"/>
+			<param name="model" value="QUAD150"/>
+			<param name="segment" value="BALL"/>
+		</node>
+	</group>
+	<!--<node name="viconros" pkg="viconros" type="viconros" output="screen">
+		<param name="host" value="192.168.2.100:801"/>
+		<param name="model" value="QUAD150"/>
+		<param name="segment" value="QUAD4OFFB"/>
+	</node> -->
+	<!--<node name="xbee_send" pkg="xbee_com" type="xbee_send" output="screen"/> -->
+	<!--node name="record" pkg="rosbag" type="record" args="record -O /home/chengque/rec.bag -a "/-->
+</launch>
