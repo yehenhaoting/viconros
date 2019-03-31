@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(viconros)
-LINK_DIRECTORIES(/home/chengque/workspace/catkin_ws/src/viconros/src)
+LINK_DIRECTORIES(src)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
