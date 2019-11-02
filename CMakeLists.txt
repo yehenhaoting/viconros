@@ -172,4 +172,4 @@ include_directories(
 # catkin_add_nosetests(test)
 add_executable(viconros src/viconros.cpp src/CFetchViconData.cpp)
 target_link_libraries(viconros ${catkin_LIBRARIES} DebugServices ViconDataStreamSDK_CPP)
-add_dependencies(viconros beginner_tutorials_generate_messages_cpp)
+#add_dependencies(viconros beginner_tutorials_generate_messages_cpp)

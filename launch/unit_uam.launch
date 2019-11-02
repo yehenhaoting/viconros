@@ -1,8 +1,8 @@
 <launch>
 	<node name="viconros" pkg="viconros" type="viconros" output="screen">
 	<param name="host" value="192.168.2.100:801"/>
-	<param name="model" value="QUAD300_02_0520"/>
-	<param name="segment" value="QUAD4OFFB"/>
+	<param name="model" value="hex800"/>
+	<param name="segment" value="mz800"/>
 	</node>
 	<!--<node name="xbee_send" pkg="xbee_com" type="xbee_send" output="screen"/>-->
 	<!--node name="record" pkg="rosbag" type="record" args="record -O /home/chengque/rec.bag -a "/-->
